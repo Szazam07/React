@@ -1,35 +1,35 @@
-import { useState } from "react";
 import "./MovieCard.css";
 
-type MovieCardProps = {
+interface MovieCardProps {
   title: string;
   year: number;
-  genre: string;
+  genre: string[];
   czyObejrzane: boolean;
-  dodajDoObejrzanych: () => void;
-};
+  oznaczJakoObejrzany: () => void;
+  ocena: number;
+  ustawOcene: (ocena: number) => void;
+}
 
 function MovieCard({
   title,
   year,
   genre,
   czyObejrzane,
-  dodajDoObejrzanych,
+  oznaczJakoObejrzany,
+  ocena,
+  ustawOcene,
 }: MovieCardProps) {
-  const [ocena, ustawOcene] = useState(0);
-
   return (
     <div className="movie-card">
       <div className="movie-info">
         <h2>Tytuł: {title}</h2>
         <p>Rok: {year}</p>
-        <p>Gatunek: {genre}</p>
+        <p>Gatunek: {genre.join(", ")}</p>
       </div>
 
       <button
         className="watched-button"
-        onClick={dodajDoObejrzanych}
-        disabled={czyObejrzane}
+        onClick={oznaczJakoObejrzany}
       >
         {czyObejrzane ? "Obejrzane!" : "Dodaj do obejrzanych"}
       </button>
