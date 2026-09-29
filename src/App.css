@@ -104,6 +104,12 @@
   }
 }
 
+ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 #next-steps ul {
   list-style: none;
   padding: 0;
@@ -167,7 +173,7 @@
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -4.5px;
     border: 5px solid transparent;

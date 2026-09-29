@@ -1,0 +1,53 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  width: 300px;
+  padding: 20px;
+  margin: 20px;
+
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  flex-wrap: wrap;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.rating button {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: gray;
+}
+
+.rating button.active {
+  color: gold;
+}
+
+.watched-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+.watched-button:hover {
+  background-color: #555;
+}
