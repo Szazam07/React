@@ -11,8 +11,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER */
-
 header {
   text-align: center;
   padding: 35px 20px 25px;
@@ -24,8 +22,6 @@ header h1 {
   color: #ffffff;
   text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
 }
-
-/* FORMULARZ */
 
 #formularz {
   width: min(600px, calc(100% - 30px));
@@ -78,8 +74,6 @@ header h1 {
   font-size: 13px;
 }
 
-/* POLA TYPU */
-
 #formularz form > div:nth-child(3) > div {
   display: flex;
   gap: 8px;
@@ -106,8 +100,6 @@ header h1 {
   transform: scale(1.05);
 }
 
-/* PRZYCISK DODAJ */
-
 #formularz form > button {
   margin-top: 5px;
   padding: 12px;
@@ -129,8 +121,6 @@ header h1 {
 #formularz form > button:active {
   transform: translateY(0);
 }
-
-/* FILTRY */
 
 nav {
   width: min(1000px, calc(100% - 30px));
@@ -167,8 +157,6 @@ nav {
   transform: translateY(0);
 }
 
-/* LISTA FILMÓW */
-
 main {
   width: min(1200px, calc(100% - 30px));
   margin: 0 auto;
@@ -179,7 +167,6 @@ main {
   gap: 25px;
 }
 
-/* BRAK FILMÓW */
 
 main > h2 {
   grid-column: 1 / -1;
@@ -190,7 +177,6 @@ main > h2 {
   border-radius: 15px;
 }
 
-/* RESPONSYWNOŚĆ */
 
 @media (max-width: 600px) {
   header {
