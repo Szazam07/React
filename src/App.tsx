@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import { useForm, useFieldArray } from "react-hook-form";
 import movies from "./data/movies.json";
 import MovieCard from "./components/MovieCard";
 
@@ -11,101 +10,71 @@ interface Movie {
   genre: string[];
 }
 
-interface FormData {
-  nazwa: string;
-  rok: number;
-  typ: { value: string }[];
-}
-
-type Oceny = Record<number, number>;
-
 function App() {
-  const [filmy, setFilm] = useState<Movie[]>(
+  const [filmy, setFilmy] = useState<Movie[]>(
     movies.map((movie) => ({
       ...movie,
       genre: Array.isArray(movie.genre) ? movie.genre : [movie.genre],
-    })) as Movie[]
+    }))
   );
 
-  const [lastId, setLastId] = useState<number>(movies.length);
+  const [nazwa, setNazwa] = useState("");
+  const [rok, setRok] = useState("");
+  const [typ, setTyp] = useState("");
+
   const [obejrzane, setObejrzane] = useState<number[]>([]);
+  const [oceny, setOceny] = useState<Record<number, number>>({});
+
   const [filtr, setFiltr] = useState<
     "wszystkie" | "obejrzane" | "nieobejrzane"
   >("wszystkie");
-  const [oceny, setOceny] = useState<Oceny>({});
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      nazwa: "",
-      rok: undefined,
-      typ: [{ value: "" }],
-    },
-  });
+  const dodajFilm = () => {
+    if (nazwa === "" || rok === "" || typ === "") {
+      return;
+    }
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "typ",
-  });
+    const nowyFilm: Movie = {
+      id: filmy.length + 1,
+      title: nazwa,
+      year: Number(rok),
+      genre: [typ],
+    };
 
-  const dodajDoBazy = (data: FormData) => {
-    console.log("Dane formularza:", data);
+    setFilmy([...filmy, nowyFilm]);
 
-    const newId = lastId + 1;
+    setNazwa("");
+    setRok("");
+    setTyp("");
+  };
 
-    setLastId(newId);
+  const oznaczJakoObejrzany = (id: number) => {
+    if (obejrzane.includes(id)) {
+      setObejrzane(obejrzane.filter((filmId) => filmId !== id));
+    } else {
+      setObejrzane([...obejrzane, id]);
+    }
+  };
 
-    setFilm((prev) => [
-      ...prev,
-      {
-        id: newId,
-        title: data.nazwa,
-        year: data.rok,
-        genre: data.typ
-          .map((t) => t.value)
-          .filter((v) => v.trim().length > 0),
-      },
-    ]);
-
-    reset({
-      nazwa: "",
-      rok: undefined,
-      typ: [{ value: "" }],
+  const ustawOcene = (id: number, ocena: number) => {
+    setOceny({
+      ...oceny,
+      [id]: ocena,
     });
   };
 
-  function oznaczJakoObejrzany(id: number) {
-    setObejrzane((prev) =>
-      prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : [...prev, id]
-    );
-  }
-
-  function ustawOcene(id: number, ocena: number) {
-    setOceny((prev) => ({
-      ...prev,
-      [id]: ocena,
-    }));
-  }
-
-  function resetuj() {
+  const resetuj = () => {
     setObejrzane([]);
     setOceny({});
-  }
+  };
 
-  const wyswietlaneFilmy = filmy.filter((movie) => {
+  const wyswietlaneFilmy = filmy.filter((film) => {
     if (filtr === "obejrzane") {
-      return obejrzane.includes(movie.id);
+      return obejrzane.includes(film.id);
     }
 
     if (filtr === "nieobejrzane") {
-      return !obejrzane.includes(movie.id);
+      return !obejrzane.includes(film.id);
     }
 
     return true;
@@ -120,122 +89,69 @@ function App() {
       </header>
 
       <div id="formularz">
-        <form onSubmit={handleSubmit(dodajDoBazy)}>
-          <div>
-            <label htmlFor="nazwa">Nazwa</label>
-            <input
-              id="nazwa"
-              type="text"
-              {...register("nazwa", {
-                required: "Nazwa filmu jest wymagana",
-                minLength: {
-                  value: 2,
-                  message: "Nazwa musi mieć co najmniej 2 znaki",
-                },
-              })}
-            />
-            {errors.nazwa && <p>{errors.nazwa.message}</p>}
-          </div>
+        <div>
+          <label>Nazwa</label>
+          <input
+            type="text"
+            value={nazwa}
+            onChange={(e) => setNazwa(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <label htmlFor="rok">Rok</label>
-            <input
-              id="rok"
-              type="number"
-              {...register("rok", {
-                required: "Rok jest wymagany",
-                valueAsNumber: true,
-                min: {
-                  value: 1888,
-                  message: "Podaj poprawny rok",
-                },
-                max: {
-                  value: new Date().getFullYear(),
-                  message: "Rok nie może być z przyszłości",
-                },
-              })}
-            />
-            {errors.rok && <p>{errors.rok.message}</p>}
-          </div>
+        <div>
+          <label>Rok</label>
+          <input
+            type="number"
+            value={rok}
+            onChange={(e) => setRok(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <label>Typ</label>
+        <div>
+          <label>Typ</label>
+          <input
+            type="text"
+            value={typ}
+            onChange={(e) => setTyp(e.target.value)}
+          />
+        </div>
 
-            {fields.map((field, index) => (
-              <div key={field.id}>
-                <input
-                  type="text"
-                  {...register(`typ.${index}.value` as const, {
-                    required: "Typ nie może być pusty",
-                  })}
-                />
-
-                {fields.length > 1 && (
-                  <button type="button" onClick={() => remove(index)}>
-                    -
-                  </button>
-                )}
-
-                {index === fields.length - 1 && (
-                  <button
-                    type="button"
-                    onClick={() => append({ value: "" })}
-                  >
-                    +
-                  </button>
-                )}
-              </div>
-            ))}
-
-            {errors.typ && <p>Uzupełnij wszystkie pola typu</p>}
-          </div>
-
-          <button type="submit">Dodaj</button>
-        </form>
+        <button onClick={dodajFilm}>Dodaj</button>
       </div>
 
       <nav>
-        <button
-          onClick={() => setFiltr("wszystkie")}
-          id="wybor"
-        >
+        <button onClick={() => setFiltr("wszystkie")}>
           Wszystkie
         </button>
 
-        <button
-          onClick={() => setFiltr("obejrzane")}
-          id="wybor"
-        >
+        <button onClick={() => setFiltr("obejrzane")}>
           Obejrzane
         </button>
 
-        <button
-          onClick={() => setFiltr("nieobejrzane")}
-          id="wybor"
-        >
+        <button onClick={() => setFiltr("nieobejrzane")}>
           Nieobejrzane
         </button>
 
-        <button onClick={resetuj} id="wybor">
+        <button onClick={resetuj}>
           Wyczyść wszystkie
         </button>
       </nav>
 
       <main>
         {wyswietlaneFilmy.length > 0 ? (
-          wyswietlaneFilmy.map((movie) => (
+          wyswietlaneFilmy.map((film) => (
             <MovieCard
-              key={movie.id}
-              title={movie.title}
-              year={movie.year}
-              genre={movie.genre}
-              czyObejrzane={obejrzane.includes(movie.id)}
+              key={film.id}
+              title={film.title}
+              year={film.year}
+              genre={film.genre}
+              czyObejrzane={obejrzane.includes(film.id)}
               oznaczJakoObejrzany={() =>
-                oznaczJakoObejrzany(movie.id)
+                oznaczJakoObejrzany(film.id)
               }
-              ocena={oceny[movie.id] || 0}
-              ustawOcene={(ocena: number) =>
-                ustawOcene(movie.id, ocena)
+              ocena={oceny[film.id] || 0}
+              ustawOcene={(ocena) =>
+                ustawOcene(film.id, ocena)
               }
             />
           ))
