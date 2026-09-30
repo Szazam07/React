@@ -120,22 +120,32 @@ function App() {
       </div>
 
       <nav>
-        <button onClick={() => setFiltr("wszystkie")}>
-          Wszystkie
-        </button>
+      <button
+        onClick={() => setFiltr("wszystkie")}
+        className="wybor"
+      >
+        Wszystkie
+      </button>
 
-        <button onClick={() => setFiltr("obejrzane")}>
-          Obejrzane
-        </button>
+      <button
+        onClick={() => setFiltr("obejrzane")}
+        className="wybor"
+      >
+        Obejrzane
+      </button>
 
-        <button onClick={() => setFiltr("nieobejrzane")}>
-          Nieobejrzane
-        </button>
+      <button
+        onClick={() => setFiltr("nieobejrzane")}
+        className="wybor"
+      >
+        Nieobejrzane
+      </button>
 
-        <button onClick={resetuj}>
-          Wyczyść wszystkie
-        </button>
+      <button onClick={resetuj} className="wybor">
+        Wyczyść wszystkie
+      </button>
       </nav>
+
 
       <main>
         {wyswietlaneFilmy.length > 0 ? (

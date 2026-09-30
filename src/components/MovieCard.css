@@ -1,92 +1,76 @@
 .movie-card {
   width: 360px;
-  padding: 24px;
-  border-radius: 18px;
-  background: linear-gradient(145deg, #1f1f2e, #15151f);
-  color: #f5f5f5;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #333;
+  color: white;
   font-family: Arial, sans-serif;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.movie-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
 }
 
 .movie-info h2 {
-  margin: 0 0 14px;
+  margin: 10px 0 10px;
   font-size: 24px;
-  color: #ffffff;
+  color: white;
 }
 
 .movie-info p {
-  margin: 8px 0;
-  color: #bdbdcc;
-  font-size: 15px;
+  margin: 10px 0;
+  color: #ccc;
 }
 
 .watched-button {
   width: 100%;
-  margin: 20px 0;
-  padding: 12px 16px;
+  margin: 15px 0;
+  padding: 10px;
   border: none;
-  border-radius: 10px;
-  background: #e50914;
+  border-radius: 5px;
+  background-color: red;
   color: white;
   font-size: 15px;
-  font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .watched-button:hover {
-  background: #ff1f2a;
-  transform: scale(1.02);
-}
-
-.watched-button:active {
-  transform: scale(0.98);
+  background-color: darkred;
 }
 
 .movie-card > div:last-child {
   padding-top: 15px;
-  border-top: 1px solid #343444;
+  border-top: 1px solid #555;
 }
 
 .movie-card > div:last-child p {
   margin: 8px 0;
-  color: #bdbdcc;
+  color: #ccc;
 }
 
 .rating {
   display: flex;
   gap: 5px;
-  margin: 8px 0 12px;
+  margin: 10px 0;
+  justify-content: center;
+  font-size: 50px;
 }
 
 .rating button {
   padding: 0;
   border: none;
-  background: transparent;
-  color: #555566;
-  font-size: 30px;
+  background-color: transparent;
+  color: #555;
+  font-size: 25px;
   cursor: pointer;
-  transition: color 0.15s ease, transform 0.15s ease;
 }
 
 .rating button:hover {
-  color: #ffd43b;
-  transform: scale(1.15);
+  color: yellow;
 }
 
 .rating button.active {
-  color: #ffd43b;
+  color: yellow;
 }
 
 @media (max-width: 420px) {
   .movie-card {
-    width: auto;
-    margin: 10px;
+    width: 100%;
   }
 }
