@@ -7,12 +7,11 @@ body {
   background-color: #eef4f1;
   color: #263238;
   font-family: Arial, sans-serif;
-  background: #2A7B9B;
-  background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(193, 193, 84, 1) 23%, rgba(87, 199, 133, 1) 45%, rgba(122, 11, 212, 1) 69%, rgba(237, 221, 83, 1) 100%);
+  background: #e1e1e1;
 }
 
 header {
-  background-color:#ffffff;
+  background: #808080;
   color: white;
   text-align: center;
   padding: 25px;
@@ -69,7 +68,8 @@ header h1 {
   padding: 11px;
   border: none;
   border-radius: 5px;
-  background-color: #27805f;
+  background: #2A7B9B;
+  background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(193, 193, 84, 1) 23%, rgba(87, 199, 133, 1) 45%, rgba(122, 11, 212, 1) 69%, rgba(237, 221, 83, 1) 100%);
   color: white;
   cursor: pointer;
 }

@@ -23,7 +23,9 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #27805f;
+  background: #2A7B9B;
+  background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(193, 193, 84, 1) 23%, rgba(87, 199, 133, 1) 45%, rgba(122, 11, 212, 1) 69%, rgba(237, 221, 83, 1) 100%);
+  color: white;
   color: white;
   cursor: pointer;
 }
