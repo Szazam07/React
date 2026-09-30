@@ -19,6 +19,7 @@ function MovieCard({
   ocena,
   ustawOcene,
 }: MovieCardProps) {
+
   return (
     <div className="movie-card">
       <div className="movie-info">
@@ -44,7 +45,7 @@ function MovieCard({
               className={gwiazdka <= ocena ? "active" : ""}
               onClick={() => ustawOcene(gwiazdka)}
             >
-              ★
+              ✮
             </button>
           ))}
         </div>

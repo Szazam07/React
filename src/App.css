@@ -4,27 +4,29 @@
 
 body {
   margin: 0;
-  background-color: #222;
-  color: white;
+  background-color: #eef4f1;
+  color: #263238;
   font-family: Arial, sans-serif;
 }
 
 header {
+  background-color: #174a3a;
+  color: white;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
 }
 
 header h1 {
   margin: 0;
-  color: white;
 }
 
 #formularz {
   width: 500px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #333;
-  border-radius: 10px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: white;
+  border: 1px solid #cbd8d2;
+  border-radius: 8px;
 }
 
 #formularz form {
@@ -36,50 +38,60 @@ header h1 {
 #formularz label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
+  color: #174a3a;
 }
 
 #formularz input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #555;
+  border: 1px solid #aebdb6;
   border-radius: 5px;
-  background-color: #111;
-  color: white;
+  background-color: #f8faf9;
+  color: #263238;
 }
 
-#formularz button {
-  padding: 10px;
+#formularz input:focus {
+  border-color: #27805f;
+  outline: none;
+}
+
+#formularz form > button {
+  padding: 11px;
   border: none;
   border-radius: 5px;
-  background-color: red;
+  background-color: #27805f;
   color: white;
   cursor: pointer;
-  margin-top: 10px;
+}
+
+#formularz form > button:hover {
+  background-color: #1d654a;
 }
 
 nav {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 20px;
+  margin: 25px auto;
 }
 
 .wybor {
-  padding: 10px 15px;
-  background-color: #333;
-  color: white;
-  border: 1px solid #555;
+  padding: 10px 18px;
+  border: 1px solid #8da99d;
   border-radius: 5px;
+  background-color: white;
+  color: #174a3a;
   cursor: pointer;
 }
 
 .wybor:hover {
-  background-color: red;
+  background-color: #dcebe5;
 }
 
 main {
   width: 90%;
-  margin: 0 auto;
+  margin: 30px auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -87,18 +99,4 @@ main {
 
 main h2 {
   text-align: center;
-}
-
-@media (max-width: 700px) {
-  #formularz {
-    width: 90%;
-  }
-
-  nav {
-    flex-direction: column;
-  }
-
-  main {
-    grid-template-columns: 1fr;
-  }
 }

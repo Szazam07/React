@@ -1,21 +1,20 @@
 .movie-card {
-  width: 360px;
+  width: 100%;
   padding: 20px;
-  border-radius: 10px;
-  background-color: #333;
-  color: white;
-  font-family: Arial, sans-serif;
+  background-color: white;
+  border: 1px solid #cbd8d2;
+  border-radius: 8px;
+  color: #263238;
 }
 
 .movie-info h2 {
-  margin: 10px 0 10px;
-  font-size: 24px;
-  color: white;
+  margin: 0 0 10px;
+  color: #174a3a;
 }
 
 .movie-info p {
-  margin: 10px 0;
-  color: #ccc;
+  margin: 8px 0;
+  color: #52645d;
 }
 
 .watched-button {
@@ -24,53 +23,63 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: red;
+  background-color: #27805f;
   color: white;
-  font-size: 15px;
   cursor: pointer;
 }
 
 .watched-button:hover {
-  background-color: darkred;
+  background-color: #1d654a;
 }
 
 .movie-card > div:last-child {
   padding-top: 15px;
-  border-top: 1px solid #555;
+  border-top: 1px solid #d3ddd8;
 }
 
 .movie-card > div:last-child p {
   margin: 8px 0;
-  color: #ccc;
+  color: #52645d;
 }
 
 .rating {
   display: flex;
   gap: 5px;
   margin: 10px 0;
-  justify-content: center;
-  font-size: 50px;
 }
 
 .rating button {
   padding: 0;
   border: none;
   background-color: transparent;
-  color: #555;
+  color: #b8c4bf;
   font-size: 25px;
   cursor: pointer;
 }
 
 .rating button:hover {
-  color: yellow;
+  color: #e0a72e;
 }
 
 .rating button.active {
-  color: yellow;
+  color: #e0a72e;
 }
 
-@media (max-width: 420px) {
-  .movie-card {
+@media (max-width: 800px) {
+  #formularz {
+    width: 90%;
+  }
+
+  nav {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .wybor {
     width: 100%;
+  }
+
+  main {
+    grid-template-columns: 1fr;
   }
 }
