@@ -88,63 +88,70 @@ function App() {
         </h1>
       </header>
 
-      <div id="formularz">
-        <div>
-          <label>Nazwa</label>
-          <input
-            type="text"
-            value={nazwa}
-            onChange={(e) => setNazwa(e.target.value)}
-          />
-        </div>
+      <div className="gora">
+  <div id="formularz">
+    <h2>Dodaj film</h2>
 
-        <div>
-          <label>Rok</label>
-          <input
-            type="number"
-            value={rok}
-            onChange={(e) => setRok(e.target.value)}
-          />
-        </div>
+    <div>
+      <label>Nazwa</label>
+      <input
+        type="text"
+        value={nazwa}
+        onChange={(e) => setNazwa(e.target.value)}
+      />
+    </div>
 
-        <div>
-          <label>Typ</label>
-          <input
-            type="text"
-            value={typ}
-            onChange={(e) => setTyp(e.target.value)}
-          />
-        </div>
+    <div>
+      <label>Rok</label>
+      <input
+        type="number"
+        value={rok}
+        onChange={(e) => setRok(e.target.value)}
+      />
+    </div>
 
-        <button onClick={dodajFilm}>Dodaj</button>
-      </div>
+    <div>
+      <label>Typ</label>
+      <input
+        type="text"
+        value={typ}
+        onChange={(e) => setTyp(e.target.value)}
+      />
+    </div>
 
-      <nav>
-      <button
-        onClick={() => setFiltr("wszystkie")}
-        className="wybor"
-      >
-        Wszystkie
-      </button>
+    <button onClick={dodajFilm} className="wybor" >Dodaj</button>
+  </div>
 
-      <button
-        onClick={() => setFiltr("obejrzane")}
-        className="wybor"
-      >
-        Obejrzane
-      </button>
+  <div className="filtry">
+    <h2>Filtry</h2>
 
-      <button
-        onClick={() => setFiltr("nieobejrzane")}
-        className="wybor"
-      >
-        Nieobejrzane
-      </button>
+    <button
+      onClick={() => setFiltr("wszystkie")}
+      className="wybor"
+    >
+      Wszystkie
+    </button>
 
-      <button onClick={resetuj} className="wybor">
-        Wyczyść wszystkie
-      </button>
-      </nav>
+    <button
+      onClick={() => setFiltr("obejrzane")}
+      className="wybor"
+    >
+      Obejrzane
+    </button>
+
+    <button
+      onClick={() => setFiltr("nieobejrzane")}
+      className="wybor"
+    >
+      Nieobejrzane
+    </button>
+
+    <button onClick={resetuj} className="wybor">
+      Wyczyść
+    </button>
+  </div>
+</div>
+
 
 
       <main>

@@ -17,12 +17,19 @@ header {
 }
 
 header h1 {
-  margin: 0;
+  margin: 10px;
+}
+
+.gora {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px auto;
 }
 
 #formularz {
   width: 500px;
-  margin: 30px auto;
+  margin: 0;
   padding: 25px;
   background-color: white;
   border: 1px solid #cbd8d2;
@@ -69,6 +76,24 @@ header h1 {
   background-color: #1d654a;
 }
 
+#formularz h2,
+.filtry h2 {
+  margin-top: 0;
+  color: #174a3a;
+}
+
+.filtry {
+  width: 220px;
+  padding: 25px;
+  background-color: white;
+  border: 1px solid #cbd8d2;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 nav {
   display: flex;
   justify-content: center;
@@ -77,12 +102,13 @@ nav {
 }
 
 .wybor {
-  padding: 10px 18px;
+  padding: 10px;
   border: 1px solid #8da99d;
   border-radius: 5px;
   background-color: white;
   color: #174a3a;
   cursor: pointer;
+  margin: 10px;
 }
 
 .wybor:hover {
