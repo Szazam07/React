@@ -15,6 +15,7 @@ header {
   color: white;
   text-align: center;
   padding: 25px;
+  box-shadow: 7px 3px 15px black;
 }
 
 header h1 {
@@ -60,7 +61,7 @@ header h1 {
 }
 
 #formularz input:focus {
-  border-color: #27805f;
+  border-color: #2d2d2d;
   outline: none;
 }
 
@@ -68,20 +69,19 @@ header h1 {
   padding: 11px;
   border: none;
   border-radius: 5px;
-  background: #2A7B9B;
-  background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(193, 193, 84, 1) 23%, rgba(87, 199, 133, 1) 45%, rgba(122, 11, 212, 1) 69%, rgba(237, 221, 83, 1) 100%);
+  background: #4a4a4a;
   color: white;
   cursor: pointer;
 }
 
 #formularz form > button:hover {
-  background-color: #1d654a;
+  background-color: #777877;
 }
 
 #formularz h2,
 .filtry h2 {
   margin-top: 0;
-  color: #174a3a;
+  color: #777877;
 }
 
 .filtry {
@@ -105,16 +105,17 @@ nav {
 
 .wybor {
   padding: 10px;
-  border: 1px solid #8da99d;
+  border: 1px solid #777877;
   border-radius: 5px;
   background-color: white;
-  color: #174a3a;
+  color: #3e3e3e;
   cursor: pointer;
   margin: 10px;
 }
 
 .wybor:hover {
-  background-color: #dcebe5;
+  background-color: #c7c7c7;
+  transition: all 0.5s;
 }
 
 main {
