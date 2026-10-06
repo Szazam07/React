@@ -20,7 +20,8 @@ function App() {
 
   const [nazwa, setNazwa] = useState("");
   const [rok, setRok] = useState("");
-  const [typ, setTyp] = useState("");
+
+  const [gatunki, setGatunki] = useState<string[]>([""]);
 
   const [obejrzane, setObejrzane] = useState<number[]>([]);
   const [oceny, setOceny] = useState<Record<number, number>>({});
@@ -29,8 +30,34 @@ function App() {
     "wszystkie" | "obejrzane" | "nieobejrzane"
   >("wszystkie");
 
+  const dodajGatunek = () => {
+    setGatunki([...gatunki, ""]);
+  };
+
+  const usunGatunek = (index: number) => {
+    if (gatunki.length === 1) {
+      return;
+    }
+
+    setGatunki(gatunki.filter((gatunek, i) => i !== index));
+  };
+
+  const zmienGatunek = (index: number, wartosc: string) => {
+    const noweGatunki = [...gatunki];
+    noweGatunki[index] = wartosc;
+    setGatunki(noweGatunki);
+  };
+
   const dodajFilm = () => {
-    if (nazwa === "" || rok === "" || typ === "") {
+    if (nazwa === "" || rok === "") {
+      return;
+    }
+
+    const poprawneGatunki = gatunki
+      .map((gatunek) => gatunek.trim())
+      .filter((gatunek) => gatunek !== "");
+
+    if (poprawneGatunki.length === 0) {
       return;
     }
 
@@ -38,14 +65,14 @@ function App() {
       id: filmy.length + 1,
       title: nazwa,
       year: Number(rok),
-      genre: [typ],
+      genre: poprawneGatunki,
     };
 
     setFilmy([...filmy, nowyFilm]);
 
     setNazwa("");
     setRok("");
-    setTyp("");
+    setGatunki([""]);
   };
 
   const oznaczJakoObejrzany = (id: number) => {
@@ -89,70 +116,99 @@ function App() {
       </header>
 
       <div className="gora">
-  <div id="formularz">
-    <h2>Dodaj film</h2>
+        <div id="formularz">
+          <h2>Dodaj film</h2>
 
-    <div>
-      <label>Nazwa</label>
-      <input
-        type="text"
-        value={nazwa}
-        onChange={(e) => setNazwa(e.target.value)}
-      />
-    </div>
+          <div>
+            <label>Nazwa</label>
+            <input
+              type="text"
+              value={nazwa}
+              onChange={(e) => setNazwa(e.target.value)}
+               placeholder="Nazwa"
+            />
+          </div>
 
-    <div>
-      <label>Rok</label>
-      <input
-        type="number"
-        value={rok}
-        onChange={(e) => setRok(e.target.value)}
-      />
-    </div>
+          <div>
+            <label>Rok</label>
+            <input
+              type="number"
+              value={rok}
+              onChange={(e) => setRok(e.target.value)}
+              placeholder="Rok"
+              
+            />
+          </div>
 
-    <div>
-      <label>Typ</label>
-      <input
-        type="text"
-        value={typ}
-        onChange={(e) => setTyp(e.target.value)}
-      />
-    </div>
+          <div>
+            <label>Gatunki</label>
 
-    <button onClick={dodajFilm} className="wybor" >Dodaj</button>
-  </div>
+            {gatunki.map((gatunek, index) => (
+              <div key={index} className="gatunek-input">
+                <input
+                  type="text"
+                  value={gatunek}
+                  onChange={(e) =>
+                    zmienGatunek(index, e.target.value)
+                  }
+                  placeholder="Gatunek"
+                />
 
-  <div className="filtry">
-    <h2>Filtry</h2>
+                <button
+                  type="button"
+                  onClick={dodajGatunek}
+                  className="plus"
+                >
+                  +
+                </button>
 
-    <button
-      onClick={() => setFiltr("wszystkie")}
-      className="wybor"
-    >
-      Wszystkie
-    </button>
+                {gatunki.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => usunGatunek(index)}
+                    className="minus"
+                  >
+                    -
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
 
-    <button
-      onClick={() => setFiltr("obejrzane")}
-      className="wybor"
-    >
-      Obejrzane
-    </button>
+          <button onClick={dodajFilm} className="wybor">
+            Dodaj
+          </button>
+        </div>
 
-    <button
-      onClick={() => setFiltr("nieobejrzane")}
-      className="wybor"
-    >
-      Nieobejrzane
-    </button>
+        <div className="filtry">
+          <h2>Filtry</h2>
 
-    <button onClick={resetuj} className="wybor">
-      Wyczyść
-    </button>
-  </div>
-</div>
+          <button
+            onClick={() => setFiltr("wszystkie")}
+            className="wybor"
+          >
+            Wszystkie
+          </button>
 
+          <button
+            onClick={() => setFiltr("obejrzane")}
+            className="wybor"
+          >
+            Obejrzane
+          </button>
 
+          <button
+            onClick={() => setFiltr("nieobejrzane")}
+            className="wybor"
+          >
+            Nieobejrzane
+          </button>
+
+          <button onClick={resetuj} className="wybor">
+            Wyczyść
+          </button>
+        </div>
+      </div>
 
       <main>
         {wyswietlaneFilmy.length > 0 ? (

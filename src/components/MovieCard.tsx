@@ -42,7 +42,7 @@ function MovieCard({
           {[1, 2, 3, 4, 5].map((gwiazdka) => (
             <button
               key={gwiazdka}
-              className={gwiazdka <= ocena ? "active" : ""}
+              className={gwiazdka <= ocena ? "active" : "" }
               onClick={() => ustawOcene(gwiazdka)}
             >
               ✮

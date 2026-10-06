@@ -129,3 +129,41 @@ main {
 main h2 {
   text-align: center;
 }
+.gatunek-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.gatunek-input input {
+  flex: 1;
+}
+
+.plus,
+.minus {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.plus {
+  background-color: #858786;
+}
+
+.minus {
+  background-color: #858786;
+}
+
+.plus:hover {
+  background-color: #858786;
+}
+
+.minus:hover {
+  background-color: #858786;
+}
+
